@@ -143,6 +143,9 @@ export default function AdvancedCanvas() {
 | `redo(steps?: number)` | Redo action(s) |
 | `clear()` | Clear canvas |
 | `reset()` | Reset canvas and history |
+| `resetZoom()` | Reset canvas zoom level |
+| `setZoom(zoom: number, animated?: boolean, anchor?: { x: number, y: number })` | Set canvas zoom level |
+| `setTranslation(x, y, zoom?: number, animated?: boolean)` | Set canvas offset |
 | `getSnapshot()` | Get image snapshot |
 | `toBase64(format?, quality?)` | Export as base64 |
 | `toSvg(width?, height?, bgColor?)` | Export as SVG |

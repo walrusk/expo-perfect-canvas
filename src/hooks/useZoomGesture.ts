@@ -226,6 +226,16 @@ export function useZoomGesture(config: ZoomGestureConfig = {}) {
     isPanning.value = false;
   }, []);
 
+  const setTranslation = useCallback((x: number, y: number, newScale?: number, animated: boolean = true) => {
+    'worklet';
+    if (newScale) {
+      scale.value = animated ? withTiming(newScale, { duration: 200 }) : newScale;
+    }
+    translation.value = animated ? withTiming({ x, y }, { duration: 200 }) : { x, y };
+    isPinching.value = false;
+    isPanning.value = false;
+  }, []);
+
   const setScale = useCallback((
     newScale: number, 
     animated: boolean = true,
@@ -275,6 +285,7 @@ export function useZoomGesture(config: ZoomGestureConfig = {}) {
     translation,
     reset,
     setScale,
+    setTranslation,
     isPinching,
     isPanning,
   };
