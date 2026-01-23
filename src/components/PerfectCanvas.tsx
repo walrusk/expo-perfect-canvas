@@ -251,6 +251,7 @@ const PerfectCanvasComponent = forwardRef<PerfectCanvasRef, PerfectCanvasProps>(
       translation,
       reset: resetZoom,
       setScale,
+      setTranslation,
       isPinching,
       isPanning,
     } = useZoomGesture({
@@ -350,9 +351,14 @@ const PerfectCanvasComponent = forwardRef<PerfectCanvasRef, PerfectCanvasProps>(
           resetZoom();
         }
       },
-      setZoom: (zoom: number) => {
+      setZoom: (zoom: number, animated = true, anchor?: { x: number; y: number }) => {
         if (enableZoom && setScale) {
-          setScale(zoom, true);
+          setScale(zoom, animated, anchor);
+        }
+      },
+      setTranslation: (x: number, y: number, zoom?: number, animated = true) => {
+        if (enableZoom && setTranslation) {
+          setTranslation(x, y, zoom, animated);
         }
       },
       getSnapshot: async () => {
